@@ -1,0 +1,11 @@
+<header id="page-header" ><h1 id="title" >Address Book</h1></header>
+<nav id="navigation" >
+    <ul id="pages" >
+        <span class="link" (click)="contactForm=false" ><li>HOME</li></span>
+        <span class="link" (click)="contactForm=true"  ><li class="margin-left-0-5">+ADD</li></span>
+    </ul>
+    <ul id="social-links" >
+        <a href=""><li><img src="../assets/images/blog-icon.png" alt="blogspot" /></li></a>
+    </ul>
+</nav>
+<app-contact-form *ngIf="contactForm" (close)="contactForm=false"  > </app-contact-form>

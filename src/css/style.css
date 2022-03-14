@@ -1,0 +1,223 @@
+body{
+    margin : 0;
+}
+
+.border-light-gray{
+    border : 1px solid rgb(204,204,204);
+}
+
+.after-astrick::after{
+    content: "*";
+    color:red;
+    font-size: 0.5rem;
+}
+
+.error-text{
+    color : red;
+}
+
+.success-text{
+    color : green;
+}
+
+.ft{
+    font-family:sans-serif;
+    font-size:15px;
+}
+
+.ft-grey{
+    color:rgb(51,51,51);
+}
+
+.secondary-text{
+    color:grey;
+    font-size:15px;
+}
+.fw-600{
+    font-weight:600;
+}
+
+.ft-century-gothic{
+    font-family: 'Century-Gothic';
+}
+
+.fs-26_8{
+    font-size: 26.8px;
+}
+
+.active-link::after/*,.link:hover::after*/{
+    content: "";
+    width: 5px;
+    height: 100%;
+    position: absolute;
+    background: white;
+    top:0;
+    right:100%;
+}
+
+.active-link/*,.link:hover*/{
+    background:rgb(255,153,0);
+    color:rgb(51,51,51)!important;
+    position: relative;
+}
+
+@font-face {
+    font-family: 'Century-Gothic';
+    src: url('https://fonts.cdnfonts.com/s/18111/GOTHIC.woff');
+}
+
+@font-face {
+    font-family: 'Aspira'; 
+    src:url('../assets/fonts/aspira.ttf') format('truetype');
+} 
+
+@font-face {
+    font-family: 'Slippy';
+    src: url('../assets/fonts/slippy.otf') format('opentype');
+}
+
+.ft-aspira{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.fw-100{
+    font-weight: 100;
+}
+
+.ft-dark-gray{
+    color:rgb(51,51,51);
+}
+
+.fs-16{
+    font-size: 16px;
+}
+
+.fs-15{
+    font-size: 15px;
+}
+
+.text-align-left{
+    text-align: left;
+}
+
+.slide-in-alert{
+    background: green;
+    padding : 5px 10px;
+    color: white;
+    transform: translateX(500px);
+    position: fixed;
+    top : 20px;
+    right:30px;
+}
+
+.success-alert{ 
+    background: green;
+    color: white;
+}
+
+.error-alert{
+    background: red;
+    color: white;
+}
+
+.warning-alert{
+    background : rgb(255,153,0);
+    color: white;
+}
+
+.fadeIn{
+    animation: fade-in 4s ease-in-out 2 alternate;
+}
+
+@keyframes fade-in{
+    from{
+        transform: translateX(500px);
+    }
+    10%{
+        transform: translateX(0);
+    }
+    100%{
+        transform: translateX(0);
+    }
+}
+
+.box-sizing-border-box{
+    box-sizing: border-box;
+}
+
+.card:hover{
+    cursor: pointer;
+    background: rgb(205,230,240);
+}
+
+.fs-30{
+    font-size: 30px;
+}
+
+.fs-15{
+    font-size: 15px;
+}
+
+.bg-blue{
+    background: rgb(205,230,240);
+}
+
+.fw-400{
+    font-weight: 400;
+}
+.fs-36{
+    font-size: 36px;
+}
+.fs-15{
+    font-size: 15px;
+}
+.edit-contact , .delete-contact{
+    cursor: pointer;
+}
+.box-shadow-gray{
+    box-shadow: 0px 0px 10px 5px rgb(80,80,80);
+}
+.border-gray{
+    border: 1px solid rgb(80,80,80);
+}
+
+.fs-12_5{
+    font-size: 12.5px;
+}
+.fw-700{
+    font-weight: 700;
+}
+.fs-10{
+    font-size: 10px;
+}
+.bg-red{
+    background: red;
+}
+.ft-white{
+    color: white;
+}
+.text-align-right{
+    text-align: right;
+}
+.bg-green{
+    background: rgb(70,140,0);
+}
+.flex-wrap{
+    flex-wrap: wrap;
+}
+.card-active{
+    background: rgb(205,230,240);
+}
+.modal{
+    box-shadow: 0px 0px 10px 2px rgb(80,80,80);
+    position: fixed;
+    left: 20%;
+    top : 50px;
+    width: 60%;
+    background: white;
+}
+.outline-none , .outline-none:focus{
+    outline: none;
+}
+
+

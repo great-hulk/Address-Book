@@ -1,0 +1,23 @@
+.d-flex{
+    display: flex;
+}
+.flex-flow-column{
+    flex-flow: column;
+}
+.d-inline-block{
+    display: inline-block;
+}
+
+.align-items-center{
+    align-items: center;
+}
+.d-none{
+    display : none;
+}
+
+.justify-content-space-between{
+    justify-content: space-between;
+}
+.justify-content-flex-end{
+    justify-content: flex-end;
+}

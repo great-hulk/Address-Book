@@ -1,0 +1,44 @@
+#page-header{
+    width: 100%;
+    background : rgb(51,153,204);
+    padding : 0.1rem 1.6rem;
+    box-sizing: border-box;
+}
+
+#page-header #title{
+    font-family:'Century-Gothic';
+    font-weight:100;
+    font-size: 3.2rem;
+    color: white;
+}
+
+
+#navigation{
+    width: 100%;
+    display: flex;
+    padding : 0rem 1.2rem;
+    justify-content: space-between;
+    background: rgb(51,51,51);
+    box-sizing: border-box;
+}
+
+#navigation ul{
+    list-style-type: none;
+    padding : 0;
+    margin: 0;
+}
+
+#navigation ul li{
+    display: inline-block;
+    height: 100%;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    font-weight:bolder;
+    cursor: pointer;
+    padding: 0.4rem 0.5rem 0.4rem 0.5rem;
+    box-sizing: border-box;
+}
+
+#navigation ul a{
+    text-decoration: none;
+}

@@ -1,0 +1,10 @@
+<div class="contacts-list w-100 h-100 px-25">
+    <h4 class="ft-aspira ft-dark-gray">CONTACTS</h4>
+    <div *ngIf="contacts.length>0"  class="d-flex flex-flow-column w-100 h-auto box-sizing-border-box ft-aspira ft-dark-gray">
+        <div *ngFor="let contact of contacts" [class.card-active]="contactSelected === contact.id" class="w-100 box-sizing-border-box card pb-15 border-light-gray contact" (click)="clickContact(contact.id)">
+            <h2 class="mt-2 pl-12 fw-100 fs-30 mb-5">{{contact.name}}</h2>
+            <span class="ms-22 fs-15">{{contact.email}}</span><br>
+            <span class="ms-22 fs-15">{{contact.mobile || contact.landline || '-'}}</span>
+        </div>
+    </div>
+</div>

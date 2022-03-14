@@ -1,0 +1,15 @@
+<div *ngIf="contact" class="ft-aspira ft-dark-gray ms-93 mt-20" >
+    <h2 class="fs-36 fw-400 mb-0 w-500 d-flex justify-content-space-between align-items-center">
+        {{ contact.name }}
+        <div class="d-flex">
+            <div class="fs-15 edit-contact d-flex align-items-center me-36" (click)="contactForm=true" ><img src="../assets/images/edit1.jpg" class="h-15 w-15 me-4"> EDIT</div>
+            <div class="fs-15 delete-contact d-flex align-items-center" (click)="removeContact()" ><img src="../assets/images/delete1.png" class="h-20 w-15 me-4"> DELETE</div>
+        </div>
+    </h2>
+    <span class="d-inline-block mt-15">Email: {{ contact.email }}</span><br>
+    <span class="d-inline-block mt-15">Mobile: {{ contact.mobile || '-' }}</span><br>
+    <span>Landline: {{ contact.landline || '-' }}</span><br>
+    <span class="d-inline-block mt-15">Website: {{ contact.website || '-' }}</span><br>
+    <span class="d-inline-block mt-15">Address: {{ contact.address || '-' }}</span><br>
+</div>
+<app-contact-form *ngIf="contact && contactForm" (close)="contactForm=false;getContact()" [contact]="contact"></app-contact-form>
