@@ -4,7 +4,8 @@ import { AddressBookComponent } from './address-book/address-book.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
 
 const routes: Routes = [
-  { path : '' , component : AddressBookComponent }
+  { path : '' , redirectTo: 'address-book' , pathMatch : 'full' },
+  { path : 'address-book' , component : AddressBookComponent }
 ];
 
 @NgModule({

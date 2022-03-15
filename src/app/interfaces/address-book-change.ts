@@ -1,6 +1,6 @@
 import { ChangeType } from "../util/constants";
 
-export interface AddressBookChange{
+export default interface IAddressBookChange{
     type : ChangeType,
     id : number
 }

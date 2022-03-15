@@ -1,6 +1,6 @@
-import Contact from "./contact.interface";
+import IContact from "./contact.interface";
 
-export default interface AddressBookContact extends Contact{
+export default interface IAddressBookContact extends IContact{
     id : number , 
     isDeleted : boolean
 }

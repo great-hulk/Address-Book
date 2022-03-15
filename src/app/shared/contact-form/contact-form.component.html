@@ -1,30 +1,29 @@
-<div *ngIf="true" class="modal p-25 box-sizing-border box-sizing-border-box">
+<div class="modal p-25 box-sizing-border box-sizing-border-box">
     <div class="w-80 d-flex flex-wrap justify-content-space-between box-sizing-border-box" >
-        <form *ngIf="contactForm" [formGroup]="contactForm" (ngSubmit)="saveContact()" class="ft-dark-gray d-flex flex-wrap justify-content-space-between" >
+        <form *ngIf="contactForm" [formGroup]="contactForm" (ngSubmit)="contact?editContact():addContact()" class="ft-dark-gray d-flex flex-wrap justify-content-space-between" >
             <div class="mb-10 w-100 ft-aspira d-inline-block" >
                 <span class="fw-700 fs-12_5">Name</span>
-                <span *ngIf="getValue('name').errors?.['required']" class="ms-12 fs-10 py-1 px-10 bg-red ft-white">Name is required</span>
-                <input type='text' formControlName="name" class="w-100 border-gray p-10 mt-5 box-sizing-border-box outline-none" />
+                <app-validation-errors [errors]="getValue('name').errors" [formcontrolName]="'name'" [validators]="validators" ></app-validation-errors>
+                <input type='text' formControlName="name" class="w-100 border-gray p-10 mt-5 box-sizing-border-box outline-none"/>
             </div>
             <div class="mb-10 w-100 ft-aspira d-inline-block" >
                 <span class="fw-700 fs-12_5">Email</span>
-                <span *ngIf="getValue('email').errors?.['required']" class="ms-12 fs-10 py-1 px-10 bg-red ft-white">Email is required</span>
-                <span *ngIf="getValue('email').errors?.['email']" class="ms-12 fs-10 py-1 px-10 bg-red ft-white">Email is invalid</span>
+                <app-validation-errors [errors]="getValue('email').errors" [formcontrolName]="'email'" [validators]="validators" ></app-validation-errors>
                 <input type='text' formControlName="email" class="w-100 border-gray p-10 mt-5 box-sizing-border-box outline-none" />
             </div>
             <div class="mb-10 w-100 ft-aspira d-inline-block w-49" >
                 <span class="fw-700 fs-12_5">Mobile</span>
-                <span *ngIf="getValue('mobile').errors?.['pattern']" class="ms-12 fs-10 py-1 px-10 bg-red ft-white">Mobile is invalid</span>
+                <app-validation-errors [errors]="getValue('mobile').errors" [formcontrolName]="'mobile'" [validators]="validators" ></app-validation-errors> 
                 <input type='text' formControlName="mobile" class="w-100 border-gray p-10 mt-5 box-sizing-border-box outline-none" />
             </div>
             <div class="mb-10 w-100 ft-aspira d-inline-block w-49" >
                 <span class="fw-700 fs-12_5">Landline</span>
-                <span *ngIf="getValue('landline').errors?.['pattern']" class="ms-12 fs-10 py-1 px-10 bg-red ft-white">Landline is invalid</span>
+                <app-validation-errors [errors]="getValue('landline').errors" [formcontrolName]="'landline'" [validators]="validators" ></app-validation-errors> 
                 <input type='text' formControlName="landline" class="w-100 border-gray p-10 mt-5 box-sizing-border-box outline-none" />
             </div>
             <div class="mb-10 w-100 ft-aspira d-inline-block" >
                 <span class="fw-700 fs-12_5">Website</span>
-                <span *ngIf="getValue('website').errors?.['pattern']" class="ms-12 fs-10 py-1 px-10 bg-red ft-white">Website is invalid</span>
+                <app-validation-errors [errors]="getValue('website').errors" [formcontrolName]="'website'" [validators]="validators" ></app-validation-errors> 
                 <input type='text' formControlName="website" class="w-100 border-gray p-10 mt-5 box-sizing-border-box outline-none" />
             </div>
             <div class="mb-10 w-100 ft-aspira d-inline-block" >
@@ -32,7 +31,7 @@
                 <textarea formControlName="address" class="w-100 border-gray p-10 mt-5 box-sizing-border-box outline-none" rows="8"></textarea>
             </div>
             <div class="d-flex justify-content-flex-end w-100" >
-                <input type="button" [value]="contact?'Save':'Add'" class="button bg-green add" (click)="saveContact()" [disabled]="!contactForm.valid"/>
+                <input type="submit" [value]="contact?'Save':'Add'" class="button bg-green add" [disabled]="!contactForm.valid"/>
                 <input type="button" value="Close" class="button bg-red ms-12 close" (click)="close.emit(true)"/>
             </div> 
         </form>

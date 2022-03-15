@@ -1,7 +1,6 @@
 import { Component, OnInit, Output , Input } from '@angular/core';
 import { EventEmitter } from '@angular/core';
-import AddressBookContact from '../interfaces/address-book-contact.interface';
-import Contact from '../interfaces/contact.interface';
+import IAddressBookContact from '../interfaces/address-book-contact.interface';
 import AddressBookService from '../services/address-book.service';
 import { ChangeType } from '../util/constants';
 
@@ -12,8 +11,7 @@ import { ChangeType } from '../util/constants';
 })
 export class ContactListComponent implements OnInit {
 
-  contacts : Array<AddressBookContact>;
-  @Output() contactClicked : EventEmitter<number>= new EventEmitter<number>();
+  contacts : Array<IAddressBookContact>;
   contactSelected : number | undefined;
   contactIfDeleted : number | undefined = undefined; 
 
@@ -45,7 +43,6 @@ export class ContactListComponent implements OnInit {
   clickContact(id : number | undefined) : void{
     this.contactSelected = id;
     this.getContactChosenIfDeleted();
-    this.contactClicked.emit(id);
   }
 
   getAllContacts() : void{
@@ -54,17 +51,17 @@ export class ContactListComponent implements OnInit {
 
   getContactChosenIfDeleted() : void{
     if( this.contactSelected === undefined || this.contacts.length < 2 ){
+      this.contactIfDeleted = undefined;
       return;
     }
     if( this.contactSelected === this.contacts[0].id ){
       this.contactIfDeleted = this.contacts[1].id;
       return;
     }
-    for( let i = 1 ; i < this.contacts.length ; i++ ){
-      if( this.contacts[i].id === this.contactSelected ){
-        this.contactIfDeleted = this.contacts[i-1].id;
-        break;
+    this.contacts.forEach( (contact , index) => {
+      if( contact.id === this.contactSelected ){
+        this.contactIfDeleted = this.contacts[index-1].id;
       }
-    }
+    })
   }
 }

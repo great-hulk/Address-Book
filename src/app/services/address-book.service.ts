@@ -1,13 +1,13 @@
 import { Injectable } from "@angular/core";
 import { Observable, Observer } from "rxjs";
-import { AddressBookChange } from "../interfaces/address-book-change";
-import AddressBookContact from "../interfaces/address-book-contact.interface";
-import Contact from "../interfaces/contact.interface";
+import AddressBookChange from "../interfaces/address-book-change";
+import IAddressBookContact from "../interfaces/address-book-contact.interface";
+import IContact from "../interfaces/contact.interface";
 import { ChangeType } from "../util/constants";
 
 @Injectable({ providedIn : 'root' })
 export default class AddressBookService{
-    private contacts : Array<AddressBookContact>;
+    private contacts : Array<IAddressBookContact>;
     observers : Array<Observer<AddressBookChange>> = [];
 
     constructor(){
@@ -16,18 +16,18 @@ export default class AddressBookService{
         ];
     }
 
-    addContact( contact : Contact ) : boolean{
+    addContact( contact : IContact ) : boolean{
         this.contacts.push({...contact , id : this.contacts.length , isDeleted : false});
         this.sendChanges({ type : ChangeType.added , id : this.contacts.length - 1 });
         return true;
     }
 
-    getAllContacts() : Array<AddressBookContact>{
+    getAllContacts() : Array<IAddressBookContact>{
         return this.contacts.filter( contact => !contact.isDeleted )
     }
 
     removeContact(id : number) : boolean{
-        const contact : AddressBookContact | undefined = this.contacts.find( contact => contact.id === id );
+        const contact : IAddressBookContact | undefined = this.contacts.find( contact => contact.id === id );
         if( contact ){
             contact.isDeleted = true;
             this.sendChanges({ type : ChangeType.removed , id : id });
@@ -36,8 +36,8 @@ export default class AddressBookService{
         return false;
     }
 
-    getContact( id : number ): AddressBookContact | undefined{
-        const contact : AddressBookContact | undefined = this.contacts.find( contact => contact.id === id );
+    getContact( id : number ): IAddressBookContact | undefined{
+        const contact : IAddressBookContact | undefined = this.contacts.find( contact => contact.id === id );
         return contact;
     }
 
@@ -54,7 +54,7 @@ export default class AddressBookService{
         }
     }
 
-    editContact( id : number , contact : AddressBookContact) : boolean{
+    editContact( id : number , contact : IAddressBookContact) : boolean{
         const contactIndex : number = this.contacts.findIndex( (contact , index) => contact.id === id && !contact.isDeleted );
         if( contactIndex > -1 ){
             this.contacts[contactIndex] = { ...this.contacts[contactIndex] , ...contact };

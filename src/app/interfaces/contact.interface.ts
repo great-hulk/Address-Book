@@ -1,4 +1,4 @@
-export default interface Contact{
+export default interface IContact{
     name : string,
     email : string,
     mobile? : string,

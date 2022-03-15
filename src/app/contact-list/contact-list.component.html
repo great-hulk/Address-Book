@@ -1,4 +1,4 @@
-<div class="contacts-list w-100 h-100 px-25">
+<div class="contacts-list w-30 h-100 px-25">
     <h4 class="ft-aspira ft-dark-gray">CONTACTS</h4>
     <div *ngIf="contacts.length>0"  class="d-flex flex-flow-column w-100 h-auto box-sizing-border-box ft-aspira ft-dark-gray">
         <div *ngFor="let contact of contacts" [class.card-active]="contactSelected === contact.id" class="w-100 box-sizing-border-box card pb-15 border-light-gray contact" (click)="clickContact(contact.id)">
@@ -8,3 +8,4 @@
         </div>
     </div>
 </div>
+<app-contact-card [contactSelected]="contactSelected" ></app-contact-card>
