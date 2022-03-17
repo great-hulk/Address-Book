@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import AddressBookService from '../services/address-book.service';
+import AddressBookService from '../address-book/services/address-book.service';
 
 @Component({
   selector: 'app-top-bar',

@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import IAddressBookContact from '../../interfaces/address-book-contact.interface';
-import Contact from '../../models/contact.model';
-import AddressBookService from '../../services/address-book.service';
-import { NotificationService } from '../../services/notification.service';
-import Regex from '../../models/regex.model';
+import IAddressBookContact from '../../../interfaces/address-book-contact.interface';
+import Contact from '../../../models/contact.model';
+import AddressBookService from '../../../services/address-book.service';
+import { NotificationService } from '../../../../shared/services/notification.service';
+import Regex from '../../../../shared/models/regex.model';
 
 @Component({
   selector: 'app-contact-form',
@@ -52,12 +52,13 @@ export class ContactFormComponent implements OnInit{
   getValue( formControlName : string ){ return this.contactForm?.get(formControlName) || {} as any }
   getContact() : Contact{
     const contact : Contact = new Contact();
-    contact.Name = this.contactForm?.get('name')?.value;
-    contact.Email = this.contactForm?.get('email')?.value;
-    contact.Mobile = this.contactForm?.get('mobile')?.value;
-    contact.Landline = this.contactForm?.get('landline')?.value;
-    contact.Website = this.contactForm?.get('website')?.value;
-    contact.Address = this.contactForm?.get('address')?.value;
+
+    contact.name = this.contactForm?.get('name')?.value;
+    contact.email = this.contactForm?.get('email')?.value;
+    contact.mobile = this.contactForm?.get('mobile')?.value;
+    contact.landline = this.contactForm?.get('landline')?.value;
+    contact.website = this.contactForm?.get('website')?.value;
+    contact.address = this.contactForm?.get('address')?.value;
 
     return contact;
   }

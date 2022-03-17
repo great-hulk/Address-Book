@@ -3,7 +3,7 @@ import { Observable, Observer } from "rxjs";
 import AddressBookChange from "../interfaces/address-book-change";
 import IAddressBookContact from "../interfaces/address-book-contact.interface";
 import IContact from "../interfaces/contact.interface";
-import { ChangeType } from "../util/constants";
+import { ChangeType } from "../constants/change-type";
 
 @Injectable({ providedIn : 'root' })
 export default class AddressBookService{
@@ -27,7 +27,7 @@ export default class AddressBookService{
     }
 
     removeContact(id : number) : boolean{
-        const contact : IAddressBookContact | undefined = this.contacts.find( contact => contact.id === id );
+        const contact : IAddressBookContact | undefined = this.contacts.find( contact => contact.id === id  && !contact.isDeleted);
         if( contact ){
             contact.isDeleted = true;
             this.sendChanges({ type : ChangeType.removed , id : id });
@@ -37,7 +37,7 @@ export default class AddressBookService{
     }
 
     getContact( id : number ): IAddressBookContact | undefined{
-        const contact : IAddressBookContact | undefined = this.contacts.find( contact => contact.id === id );
+        const contact : IAddressBookContact | undefined = this.contacts.find( contact => contact.id === id && !contact.isDeleted );
         return contact;
     }
 

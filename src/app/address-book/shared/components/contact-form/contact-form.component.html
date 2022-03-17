@@ -3,27 +3,27 @@
         <form *ngIf="contactForm" [formGroup]="contactForm" (ngSubmit)="contact?editContact():addContact()" class="ft-dark-gray d-flex flex-wrap justify-content-space-between" >
             <div class="mb-10 w-100 ft-aspira d-inline-block" >
                 <span class="fw-700 fs-12_5">Name</span>
-                <app-validation-errors [errors]="getValue('name').errors" [formcontrolName]="'name'" [validators]="validators" ></app-validation-errors>
+                <app-validation-errors [formcontrol]="getValue('name')" formcontrolName="name" [validators]="validators" ></app-validation-errors>
                 <input type='text' formControlName="name" class="w-100 border-gray p-10 mt-5 box-sizing-border-box outline-none"/>
             </div>
             <div class="mb-10 w-100 ft-aspira d-inline-block" >
                 <span class="fw-700 fs-12_5">Email</span>
-                <app-validation-errors [errors]="getValue('email').errors" [formcontrolName]="'email'" [validators]="validators" ></app-validation-errors>
+                <app-validation-errors [formcontrol]="getValue('email')" formcontrolName="email" [validators]="validators" ></app-validation-errors>
                 <input type='text' formControlName="email" class="w-100 border-gray p-10 mt-5 box-sizing-border-box outline-none" />
             </div>
             <div class="mb-10 w-100 ft-aspira d-inline-block w-49" >
                 <span class="fw-700 fs-12_5">Mobile</span>
-                <app-validation-errors [errors]="getValue('mobile').errors" [formcontrolName]="'mobile'" [validators]="validators" ></app-validation-errors> 
+                <app-validation-errors [formcontrol]="getValue('mobile')" formcontrolName="mobile" [validators]="validators" ></app-validation-errors> 
                 <input type='text' formControlName="mobile" class="w-100 border-gray p-10 mt-5 box-sizing-border-box outline-none" />
             </div>
             <div class="mb-10 w-100 ft-aspira d-inline-block w-49" >
                 <span class="fw-700 fs-12_5">Landline</span>
-                <app-validation-errors [errors]="getValue('landline').errors" [formcontrolName]="'landline'" [validators]="validators" ></app-validation-errors> 
+                <app-validation-errors [formcontrol]="getValue('landline')" formcontrolName="landline" [validators]="validators" ></app-validation-errors> 
                 <input type='text' formControlName="landline" class="w-100 border-gray p-10 mt-5 box-sizing-border-box outline-none" />
             </div>
             <div class="mb-10 w-100 ft-aspira d-inline-block" >
                 <span class="fw-700 fs-12_5">Website</span>
-                <app-validation-errors [errors]="getValue('website').errors" [formcontrolName]="'website'" [validators]="validators" ></app-validation-errors> 
+                <app-validation-errors [formcontrol]="getValue('address')" formcontrolName="website" [validators]="validators" ></app-validation-errors> 
                 <input type='text' formControlName="website" class="w-100 border-gray p-10 mt-5 box-sizing-border-box outline-none" />
             </div>
             <div class="mb-10 w-100 ft-aspira d-inline-block" >

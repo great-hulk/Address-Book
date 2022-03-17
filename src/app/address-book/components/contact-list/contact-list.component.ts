@@ -1,8 +1,8 @@
 import { Component, OnInit, Output , Input } from '@angular/core';
 import { EventEmitter } from '@angular/core';
-import IAddressBookContact from '../interfaces/address-book-contact.interface';
-import AddressBookService from '../services/address-book.service';
-import { ChangeType } from '../util/constants';
+import IAddressBookContact from '../../interfaces/address-book-contact.interface';
+import AddressBookService from '../../services/address-book.service';
+import { ChangeType } from '../../constants/change-type';
 
 @Component({
   selector: 'app-contact-list',
@@ -12,36 +12,36 @@ import { ChangeType } from '../util/constants';
 export class ContactListComponent implements OnInit {
 
   contacts : Array<IAddressBookContact>;
-  contactSelected : number | undefined;
-  contactIfDeleted : number | undefined = undefined; 
+  contactIdSelected : number | undefined;
+  contactIdIfDeleted : number | undefined = undefined; 
 
   constructor( private addressBookService : AddressBookService ) {
     this.contacts = [];
-    this.contactSelected = undefined;
+    this.contactIdSelected = undefined;
   }
   ngOnInit(): void {
     this.getAllContacts();
     
     if( this.contacts.length > 0 ){
-      this.clickContact( this.contacts[0].id );
+      this.onContactSelected( this.contacts[0].id );
     }
 
     this.addressBookService.getChanges().subscribe(changes  => {
       this.getAllContacts();
       switch( changes.type ){
         case ChangeType.edited:
-          this.clickContact( this.contactSelected );
+          this.onContactSelected( this.contactIdSelected );
           break;
         case ChangeType.removed:
-          this.clickContact( this.contactIfDeleted );
+          this.onContactSelected( this.contactIdIfDeleted );
           break;
         case ChangeType.added:
-          this.clickContact( changes.id );
+          this.onContactSelected( changes.id );
       }
     })
   }
-  clickContact(id : number | undefined) : void{
-    this.contactSelected = id;
+  onContactSelected(id : number | undefined) : void{
+    this.contactIdSelected = id;
     this.getContactChosenIfDeleted();
   }
 
@@ -50,17 +50,17 @@ export class ContactListComponent implements OnInit {
   }
 
   getContactChosenIfDeleted() : void{
-    if( this.contactSelected === undefined || this.contacts.length < 2 ){
-      this.contactIfDeleted = undefined;
+    if( this.contactIdSelected === undefined || this.contacts.length < 2 ){
+      this.contactIdIfDeleted = undefined;
       return;
     }
-    if( this.contactSelected === this.contacts[0].id ){
-      this.contactIfDeleted = this.contacts[1].id;
+    if( this.contactIdSelected === this.contacts[0].id ){
+      this.contactIdIfDeleted = this.contacts[1].id;
       return;
     }
     this.contacts.forEach( (contact , index) => {
-      if( contact.id === this.contactSelected ){
-        this.contactIfDeleted = this.contacts[index-1].id;
+      if( contact.id === this.contactIdSelected ){
+        this.contactIdIfDeleted = this.contacts[index-1].id;
       }
     })
   }
