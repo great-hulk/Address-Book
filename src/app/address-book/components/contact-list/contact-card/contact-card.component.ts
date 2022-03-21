@@ -27,7 +27,7 @@ export class ContactCardComponent implements OnInit , OnChanges {
 
   getContact():void{
     if( this.contactIdSelected !== undefined && this.contactIdSelected > -1 ){
-      this.contact = this.addressBookService.getContact(this.contactIdSelected);
+      this.addressBookService.getContact(this.contactIdSelected).subscribe( contact => this.contact = contact );
       return;
     }
     this.contact = undefined;

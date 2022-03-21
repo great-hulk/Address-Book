@@ -3,6 +3,7 @@ import { EventEmitter } from '@angular/core';
 import IAddressBookContact from '../../interfaces/address-book-contact.interface';
 import AddressBookService from '../../services/address-book.service';
 import { ChangeType } from '../../constants/change-type';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-contact-list',
@@ -20,11 +21,12 @@ export class ContactListComponent implements OnInit {
     this.contactIdSelected = undefined;
   }
   ngOnInit(): void {
-    this.getAllContacts();
-    
-    if( this.contacts.length > 0 ){
-      this.onContactSelected( this.contacts[0].id );
-    }
+    (this.addressBookService.getAllContacts() as Observable<Array<IAddressBookContact>>).subscribe( contacts => {
+      this.contacts = contacts;
+      if( this.contacts.length > 0 ){
+        this.onContactSelected( this.contacts[0].id );
+      }
+    }) ;
 
     this.addressBookService.getChanges().subscribe(changes  => {
       this.getAllContacts();
@@ -46,7 +48,7 @@ export class ContactListComponent implements OnInit {
   }
 
   getAllContacts() : void{
-    this.contacts = this.addressBookService.getAllContacts();
+    this.contacts = this.addressBookService.getAllContacts() as Array<IAddressBookContact>;
   }
 
   getContactChosenIfDeleted() : void{
