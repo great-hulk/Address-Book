@@ -84,4 +84,20 @@ export default class AddressBookService{
         return false;
     }
 
+    isEmailTaken( email : string ) : Observable<boolean>{
+        const emailTaken : Observable<boolean> = new Observable<boolean>( observer => {
+            let isTaken : boolean = false;
+            if( this.contacts ){
+                for( let contact of this.contacts ){
+                    if( contact.email === email ){
+                        isTaken = true;
+                        break;
+                    }
+                }
+            }
+            observer.next(isTaken);
+            observer.unsubscribe();
+        }) 
+        return emailTaken;
+    }
 }

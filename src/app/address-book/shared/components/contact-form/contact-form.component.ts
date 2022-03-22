@@ -1,10 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup} from '@angular/forms';
 import IAddressBookContact from '../../../interfaces/address-book-contact.interface';
 import Contact from '../../../models/contact.model';
 import AddressBookService from '../../../services/address-book.service';
 import { NotificationService } from '../../../../shared/services/notification.service';
 import Regex from '../../../../shared/models/regex.model';
+import CustomValidators from './validators/validators';
+import EmailUniqueValidator from './validators/contact-form-validator';
 
 @Component({
   selector: 'app-contact-form',
@@ -31,20 +33,25 @@ export class ContactFormComponent implements OnInit{
       pattern : 'Landline is invalid'
     },
     website : {
-      pattern : 'Website is invalid'
+      pattern: 'Website is invalid'
     }
   }
 
-  constructor( private addressBookService : AddressBookService , private notificationService : NotificationService ) {}
+  constructor( private addressBookService : AddressBookService , private notificationService : NotificationService , private emailUniqueValidator : EmailUniqueValidator ) {}
 
   ngOnInit(){
     const contact : IAddressBookContact = this.contact ? this.contact : {} as any;
     this.contactForm = new FormGroup({
-      name : new FormControl( contact.name || '' , [Validators.required] ),
-      email : new FormControl( contact.email || '' , [Validators.required , Validators.email] ),
-      mobile : new FormControl( contact.mobile || '' , Validators.pattern( Regex.contactNumber )),
-      landline : new FormControl(contact.landline || '' , Validators.pattern( Regex.contactNumber )),
-      website : new FormControl( contact.website || '', Validators.pattern(Regex.website) ),
+      name : new FormControl( contact.name || '' , CustomValidators.required() ),
+      email : new FormControl( contact.email || '' ,
+      {
+        validators : [CustomValidators.required() , CustomValidators.email()],
+        asyncValidators : [this.emailUniqueValidator.validate.bind(this.emailUniqueValidator)],
+        updateOn : 'change',
+      }),
+      mobile : new FormControl( contact.mobile || '' , CustomValidators.pattern(Regex.contactNumber)),
+      landline : new FormControl(contact.landline || '', CustomValidators.pattern(Regex.contactNumber) ),
+      website : new FormControl( contact.website || '', CustomValidators.pattern( Regex.website ) ),
       address : new FormControl( contact.address || '')
     })
   }
